@@ -12,4 +12,4 @@ The user can then specify the start point and end point of the Kanji revision (v
 
 The `Next` button takes the user the next Kanji, `Back` button to the previous Kanji and `Reset` button to the query screen where the range of Kanji can be entered again.
 
-Currently, hiding the answer (meaning, the bottom card) and displaying it after a time delay or button press has not been implemented and will be implemented in the future. As of now, this is the minimum viable product for the purpose of flashcarding the Kanji in the book Kodansha KLC.
+The meaning of the Kanji is initially hidden, revealed when the `Next` button is clicked.

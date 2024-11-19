@@ -54,6 +54,14 @@ class FlashViewModel : ViewModel() {
     }
   }
 
+  fun setDisp(dispValue : Boolean){
+    _uiState.update { currentState ->
+      currentState.copy(
+        disp = dispValue
+      )
+    }
+  }
+
   fun computeQuiz(){
 
     try {
@@ -81,8 +89,16 @@ class FlashViewModel : ViewModel() {
     if(index+1 >= uiState.value.quiz.size){
       return
     }
-    setCurnum(uiState.value.curnum+1)
-    setCurrent(uiState.value.quiz[index+1])
+
+    if(uiState.value.disp){
+      setCurnum(uiState.value.curnum+1)
+      setCurrent(uiState.value.quiz[index+1])
+      setDisp(false)
+    }
+    else{
+      setDisp(true)
+    }
+
   }
 
   fun reviterate(){
@@ -90,14 +106,17 @@ class FlashViewModel : ViewModel() {
     if(index-1 < 0){
       return
     }
+
     setCurnum(uiState.value.curnum-1)
     setCurrent(uiState.value.quiz[index-1])
+    setDisp(true)
   }
 
   fun reset(){
     setCurnum(1)
     setCurrent(1)
     setQuiz(listOf())
+    setDisp(false)
   }
 
 

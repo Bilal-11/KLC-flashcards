@@ -119,7 +119,14 @@ fun QuizScreen(
 
     QuizCard(modifier = Modifier.fillMaxHeight(0.5F), kanjiList[uiState.current-1].kanji,72)
     Spacer(modifier = Modifier.height(20.dp))
-    QuizCard(modifier = Modifier.fillMaxHeight(0.5F), kanjiList[uiState.current-1].meaning,36)
+
+    if(uiState.disp){
+      QuizCard(modifier = Modifier.fillMaxHeight(0.5F), kanjiList[uiState.current-1].meaning,36)
+    }
+    else{
+      QuizCard(modifier = Modifier.fillMaxHeight(0.5F), "",36)
+    }
+
 
 //    Text(uiState.quiz.toString())
 
