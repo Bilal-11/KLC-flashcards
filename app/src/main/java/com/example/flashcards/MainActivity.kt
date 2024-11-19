@@ -26,6 +26,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -55,9 +56,14 @@ class MainActivity : ComponentActivity() {
     super.onCreate(savedInstanceState)
 //    enableEdgeToEdge()
     setContent {
-      FlashcardsTheme {
-        val vm : FlashViewModel = viewModel()
-        AppNav(viewModel = vm)
+      FlashcardsTheme(
+        dynamicColor = false
+      ) {
+        Surface {
+          val vm : FlashViewModel = viewModel()
+          AppNav(viewModel = vm)
+        }
+
 
       }
     }
@@ -179,7 +185,7 @@ fun QueryScreen(
       .verticalScroll(rememberScrollState())
   ){
     val uiState by viewModel.uiState.collectAsState()
-    Text("Enter kanji ref: ", fontSize = 36.sp)
+    Text("Enter Kanji Ref: ", fontSize = 36.sp)
     OutlinedTextField(
       value = uiState.start,
       onValueChange = {viewModel.setStart(it)},
