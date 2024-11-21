@@ -87,6 +87,9 @@ class FlashViewModel : ViewModel() {
   fun iterate(){
     val index = uiState.value.quiz.indexOf(uiState.value.current)
     if(index+1 >= uiState.value.quiz.size){
+      if(!uiState.value.disp){
+        setDisp(true)
+      }
       return
     }
 
