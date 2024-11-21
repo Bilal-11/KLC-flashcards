@@ -39,6 +39,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -70,6 +72,10 @@ class MainActivity : ComponentActivity() {
   }
 }
 
+val zen_old_mincho = FontFamily(
+  Font(R.font.zenoldminchoregular)
+)
+
 @Composable
 fun QuizCard(
   modifier: Modifier,
@@ -94,7 +100,8 @@ fun QuizCard(
         text = text,
         fontSize = fSize.sp,
         textAlign = TextAlign.Center,
-        lineHeight = (fSize+8).sp
+        lineHeight = (fSize+8).sp,
+        fontFamily = zen_old_mincho
       )
     }
   }
@@ -123,11 +130,11 @@ fun QuizScreen(
       Text("${uiState.current}")
     }
 
-    QuizCard(modifier = Modifier.fillMaxHeight(0.5F), kanjiList[uiState.current-1].kanji,72)
+    QuizCard(modifier = Modifier.fillMaxHeight(0.5F), kanjiList[uiState.current-1].kanji,108)
     Spacer(modifier = Modifier.height(20.dp))
 
     if(uiState.disp){
-      QuizCard(modifier = Modifier.fillMaxHeight(0.5F), kanjiList[uiState.current-1].meaning,36)
+      QuizCard(modifier = Modifier.fillMaxHeight(0.5F), kanjiList[uiState.current-1].meaning,40)
     }
     else{
       QuizCard(modifier = Modifier.fillMaxHeight(0.5F), "",36)
@@ -185,7 +192,7 @@ fun QueryScreen(
       .verticalScroll(rememberScrollState())
   ){
     val uiState by viewModel.uiState.collectAsState()
-    Text("Enter Kanji Ref: ", fontSize = 36.sp)
+    Text("Enter Kanji Ref: ", fontSize = 42.sp, fontFamily = zen_old_mincho)
     OutlinedTextField(
       value = uiState.start,
       onValueChange = {viewModel.setStart(it)},
@@ -193,7 +200,7 @@ fun QueryScreen(
       keyboardOptions = KeyboardOptions(
         imeAction = ImeAction.Next,
         keyboardType = KeyboardType.Number
-      )
+      ),
     )
     OutlinedTextField(
       value = uiState.end,
